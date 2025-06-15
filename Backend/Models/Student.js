@@ -1,23 +1,16 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const studentSchema = new mongoose.Schema({
-  name: String,
-  email: String,
+const studentSchema = new Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
   phone: String,
-  codeforcesHandle: String,
+  codeforcesHandle: { type: String, required: true, unique: true },
   currentRating: Number,
   maxRating: Number,
-  contests: Array,
-  problems: Array,
   lastSynced: Date,
-  remindersSent: {
-    type: Number,
-    default: 0,
-  },
-  emailRemindersEnabled: {
-    type: Boolean,
-    default: true,
-  }
-});
+  remindersSent: { type: Number, default: 0 },
+  emailRemindersEnabled: { type: Boolean, default: true }
+}, { timestamps: true });
 
 module.exports = mongoose.model('Student', studentSchema);
