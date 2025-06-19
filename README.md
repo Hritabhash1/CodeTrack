@@ -138,8 +138,10 @@ GET /api/contests/:studentId - Contest history for a student
 GET /api/problems/:studentId - Problem-solving data for a student
 
 ## Cron Config Route
-GET /api/cron-config - Get current cron configuration
-POST /api/cron-config - Update cron time and frequency
+
+- GET /api/cron-config - Get current cron configuration
+- POST /api/cron-config - Update cron time and frequency or TimeZone
+
 ---
 ### Deliverables
 - GitHub Repository: https://github.com/Hritabhash1/CodeTrack
