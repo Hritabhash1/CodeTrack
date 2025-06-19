@@ -139,7 +139,6 @@ GET /api/problems/:studentId - Problem-solving data for a student
 
 ## Cron Config Route
 GET /api/cron-config - Get current cron configuration
-
 POST /api/cron-config - Update cron time and frequency
 ---
 ### Deliverables
