@@ -1,88 +1,87 @@
-### Student Progress Management System
-A MERN stack web application that allows institutions to manage students' Codeforces performance data, track their contest history and problem-solving progress, and automate reminders for inactivity.
+# Student Progress Management System
 
-### Features
-## Student Table View
-List of all students with the following information:
+A full-stack MERN web application to manage, track, and analyze students' Codeforces performance. Designed for institutions to monitor student progress, send inactivity reminders, and view detailed analytics for contests and problem-solving history.
 
-Name, Email, Phone Number, Codeforces Handle
+---
 
-Current Rating, Max Rating
+## 🔹 Features
 
-Last Synced Time
+### 📊 Student Table View
 
-Reminders Sent Count
+A central dashboard listing all enrolled students, including:
 
-Toggle to enable/disable email reminders
+- Name, Email, Phone Number, Codeforces Handle  
+- Current Rating and Max Rating  
+- Last Synced Time  
+- Reminders Sent Count  
+- Toggle for enabling/disabling email reminders  
+- Add, Edit, and Delete students  
+- Search by name  
+- Export the entire dataset as a CSV  
+- View individual student profiles  
 
-Add, Edit, Delete student entries
+---
 
-Search functionality by name
+### 📁 Student Profile View
 
-Export entire dataset as CSV
+Each student profile includes two detailed sections:
 
-View individual student profile
+#### 1. Contest History
 
-### Student Profile View
-When a student is clicked from the table:
+- Filters: Last 30, 90, or 365 days  
+- Line chart showing rating changes  
+- Contest list showing:
+  - Contest Name
+  - Rank
+  - Rating Change
+  - Number of unsolved problems  
 
-Contest History
+#### 2. Problem Solving Stats
 
-Filters: last 30, 90, or 365 days
+- Filters: Last 7, 30, or 90 days  
+- Most difficult problem solved  
+- Total problems solved  
+- Average problem rating  
+- Average problems per day  
+- Bar chart showing problems solved per rating bucket  
+- Submission heatmap (activity calendar)  
 
-Line graph showing rating changes over time
+---
 
-Table showing:
+### 🔄 Codeforces Data Sync
 
-Contest Name, Rank, Rating Change
+- Automatic data sync at 2 AM daily (customizable via cron)  
+- No real-time API calls during user hours  
+- Immediate sync on handle update  
 
-Problems unsolved by the student in that contest
+---
 
-Problem Solving Stats
+### 📧 Inactivity Detection
 
-Filters: last 7, 30, or 90 days
+- Students with no recent accepted submissions (past 7 days) receive automatic email reminders  
+- Reminders are tracked per student  
+- Email reminders can be disabled per student  
 
-Most difficult problem solved
+---
 
-Total problems solved
+### 🌗 Additional Functionalities
 
-Average rating of problems solved
+- Dark/Light Mode Toggle  
+- Responsive UI (mobile and tablet friendly)  
+- Clean and well-documented codebase  
 
-Average problems solved per day
+---
 
-Bar chart of problems solved by rating bucket
+## 🛠️ Tech Stack
 
-Submission heatmap by date
+| Layer     | Technologies                            |
+|-----------|------------------------------------------|
+| Frontend  | React, Tailwind CSS                      |
+| Backend   | Node.js, Express.js                      |
+| Database  | MongoDB                                  |
+| Other     | Axios, Chart.js, node-cron, nodemailer, json2csv |
 
-### Codeforces Data Sync
-Codeforces data is fetched daily at a configurable time (default: 2 AM) using a cron job
-
-No live API calls during interaction hours
-
-When a student’s handle is updated, their Codeforces data is synced immediately
-
-### Inactivity Detection
-If a student has no accepted submission in the past 7 days, an email reminder is sent
-
-A count of reminder emails sent is stored per student
-
-Email reminders can be turned on or off per student
-
-### Other Functionalities
-Dark and Light Mode with toggle
-
-Mobile and tablet responsive UI
-
-Well-organized and documented codebase
-
-## Tech Stack
-Frontend: React, Tailwind CSS
-
-Backend: Node.js, Express.js
-
-Database: MongoDB
-
-Other Libraries: Axios, Chart.js, node-cron, nodemailer, json2csv
+---
 
 ## Setup Instructions
 Clone the repository
