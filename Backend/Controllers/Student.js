@@ -1,5 +1,7 @@
 const Student = require('../Models/Student');
 const { fetchAndStoreCFData } = require('../Utils/CodeforcesApi');
+const syncStudent = require('../Services/CronJob');
+
 exports.getAllStudents = async (req, res) => {
   try {
     const students = await Student.find();
@@ -11,10 +13,13 @@ exports.getAllStudents = async (req, res) => {
 
 exports.createStudent = async (req, res) => {
   try {
+    console.log('Incoming student data:', req.body); 
     const student = new Student(req.body);
     await student.save();
+     await syncStudent(student);
     res.status(201).json(student);
   } catch (err) {
+    console.error('Create student error:', err.message);
     res.status(400).json({ message: err.message });
   }
 };
@@ -33,6 +38,7 @@ exports.updateStudent = async (req, res) => {
   try {
     const student = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!student) return res.status(404).json({ message: "Student not found" });
+     await syncStudent(student);
     res.json(student);
   } catch (err) {
     res.status(400).json({ message: err.message });

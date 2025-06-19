@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from 'react';
+import './Utils/Theme.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Dashboard from '@/Pages/Dashboard';
+import Students from '@/pages/Students';
+import StudentProfile from '@/pages/StudentProfile';
+import Settings from '@/Pages/Settings';
+import NotFound from '@/pages/NotFound';
+import Layout from '@/Layouts/Layout';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [dark, setDark] = useState(() =>
+    localStorage.getItem('theme') === 'dark'
+  );
+
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', dark);
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  }, [dark]);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <button
+        onClick={() => setDark(!dark)}
+        style={{
+          position: 'fixed',
+          top: '1rem',
+          right: '1rem',
+          zIndex: 1000,
+          background: dark ? '#333' : '#ddd',
+          color: dark ? '#fff' : '#000',
+          border: 'none',
+          padding: '0.5rem 1rem',
+          borderRadius: '5px',
+          cursor: 'pointer',
+        }}
+      >
+        {dark ? '🌙 Dark' : '☀️ Light'}
+      </button>
 
-export default App
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="students" element={<Students />} />
+            <Route path="students/:id" element={<StudentProfile />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+}

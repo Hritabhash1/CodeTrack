@@ -9,8 +9,9 @@ const contestSchema = new Schema({
   ratingChange: Number,
   oldRating: Number,
   newRating: Number,
-  date: { type: Date, required: true },
-  problemsUnsolved: Number
+ ratingUpdateTime: Date ,
+  problemsUnsolved: Number,
+  problems: [String],
 }, { timestamps: true });
 
 module.exports = mongoose.model('Contest', contestSchema);

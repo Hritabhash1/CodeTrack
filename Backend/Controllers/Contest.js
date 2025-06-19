@@ -1,4 +1,5 @@
 const Contest = require('../Models/Contest');
+const ProblemStat = require('../Models/ProblemStat');
 
 exports.addContest = async (req, res) => {
   try {
@@ -10,14 +11,6 @@ exports.addContest = async (req, res) => {
   }
 };
 
-exports.getContestsByStudent = async (req, res) => {
-  try {
-    const contests = await Contest.find({ student: req.params.studentId });
-    res.json(contests);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
 
 
 exports.updateContest = async (req, res) => {
@@ -37,5 +30,37 @@ exports.deleteContest = async (req, res) => {
     res.json({ message: 'Contest deleted' });
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+};
+
+
+exports.getContestsByStudent = async (req, res) => {
+  const studentId = req.params.studentId;
+  const range = parseInt(req.query.range) || 30; 
+
+  try {
+    const fromDate = new Date();
+    fromDate.setDate(fromDate.getDate() - range);
+
+    const contests = await Contest.find({
+      student: studentId,
+      ratingUpdateTime: { $gte: fromDate }
+    }).sort({ ratingUpdateTime: -1 }).lean();
+
+    const solvedProblems = await ProblemStat.find({ student: studentId }).select('problemId');
+    const solvedSet = new Set(solvedProblems.map(p => p.problemId));
+
+    const enrichedContests = contests.map(c => {
+      const unsolved = (c.problems || []).filter(p => !solvedSet.has(p));
+      return {
+        ...c,
+        problemsUnsolved: unsolved.length
+      };
+    });
+
+    res.json(enrichedContests);
+  } catch (err) {
+    console.error('Error fetching contests:', err);
+    res.status(500).json({ message: 'Server error' });
   }
 };

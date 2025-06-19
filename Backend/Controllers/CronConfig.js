@@ -1,6 +1,7 @@
+// controllers/CronConfigController.js
 const CronConfig = require('../Models/CronConfig');
 
-exports.getCronConfig = async (req, res) => {
+const getCronConfig = async (req, res) => {
   try {
     const config = await CronConfig.findOne(); 
     res.json(config);
@@ -9,7 +10,7 @@ exports.getCronConfig = async (req, res) => {
   }
 };
 
-exports.updateCronConfig = async (req, res) => {
+const updateCronConfig = async (req, res) => {
   try {
     let config = await CronConfig.findOne();
 
@@ -24,4 +25,9 @@ exports.updateCronConfig = async (req, res) => {
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
+};
+
+module.exports = {
+  getCronConfig,
+  updateCronConfig,
 };

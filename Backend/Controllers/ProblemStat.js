@@ -10,14 +10,27 @@ exports.addProblemStat = async (req, res) => {
   }
 };
 
+
 exports.getProblemStatsByStudent = async (req, res) => {
+  const studentId = req.params.studentId;
+  const range = parseInt(req.query.range) || 30;
+
   try {
-    const problems = await ProblemStat.find({ student: req.params.studentId });
+    const fromDate = new Date();
+    fromDate.setDate(fromDate.getDate() - range);
+
+    const problems = await ProblemStat.find({
+      student: studentId,
+      solvedAt: { $gte: fromDate }
+    }).sort({ solvedAt: -1 });
+
     res.json(problems);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error('Error fetching problems:', err);
+    res.status(500).json({ message: 'Server error' });
   }
 };
+
 
 exports.deleteProblemStat = async (req, res) => {
   try {
