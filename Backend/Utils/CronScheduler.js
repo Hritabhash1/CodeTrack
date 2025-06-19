@@ -33,10 +33,9 @@ const scheduleCronJob = async () => {
         console.warn(`Unsupported frequency "${frequency}", defaulting to 2 AM daily`);
     }
 
-    // Clear old task if exists
     if (currentTask) {
       currentTask.stop();
-      console.log('⏹️ Previous cron task stopped');
+      console.log('Previous cron task stopped');
     }
 
     currentTask = cron.schedule(
