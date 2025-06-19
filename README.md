@@ -2,6 +2,7 @@
 
 A full-stack MERN web application to manage, track, and analyze students' Codeforces performance. Designed for institutions to monitor student progress, send inactivity reminders, and view detailed analytics for contests and problem-solving history.
 
+YouTube Demo Video: [Video Link](https://www.youtube.com/watch?v=clWYOYiWp7M&)
 ---
 
 ## 🔹 Features
