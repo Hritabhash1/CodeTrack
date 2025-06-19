@@ -2,7 +2,7 @@
 A MERN stack web application that allows institutions to manage students' Codeforces performance data, track their contest history and problem-solving progress, and automate reminders for inactivity.
 
 ### Features
-Student Table View
+## Student Table View
 List of all students with the following information:
 
 Name, Email, Phone Number, Codeforces Handle
@@ -146,9 +146,10 @@ POST /api/cron-config - Update cron time and frequency
 Deliverables
 GitHub Repository: https://github.com/Hritabhash1/CodeTrack
 
-YouTube Demo Video: Uploading soon ........
+YouTube Demo Video: [Video Link](https://www.youtube.com/watch?v=clWYOYiWp7M&)
+Drive Video Link : [Click the Link](https://drive.google.com/file/d/1ZTZRJiMbu8Z4JBtj6-yMDp8RPuiYWt4X/view?usp=sharing)
 
-Notes
+### Notes
 The system avoids real-time API calls during daytime to reduce API load
 
 Each student's Codeforces data is stored in the database to allow efficient access
