@@ -118,7 +118,7 @@ npm run dev
 ```
 Access the application
 Visit http://localhost:5173 in your browser
-
+---
 ### API Routes
 
 ## Student Routes
@@ -132,7 +132,7 @@ DELETE /api/students/:id - Delete student
 
 GET /api/export - Download all student data as CSV
 
-##Contest and Problem Routes
+## Contest and Problem Routes
 GET /api/contests/:studentId - Contest history for a student
 
 GET /api/problems/:studentId - Problem-solving data for a student
@@ -141,12 +141,11 @@ GET /api/problems/:studentId - Problem-solving data for a student
 GET /api/cron-config - Get current cron configuration
 
 POST /api/cron-config - Update cron time and frequency
-
-Deliverables
-GitHub Repository: https://github.com/Hritabhash1/CodeTrack
-
-YouTube Demo Video: [Video Link](https://www.youtube.com/watch?v=clWYOYiWp7M&)
-Drive Video Link : [Click the Link](https://drive.google.com/file/d/1ZTZRJiMbu8Z4JBtj6-yMDp8RPuiYWt4X/view?usp=sharing)
+---
+### Deliverables
+- GitHub Repository: https://github.com/Hritabhash1/CodeTrack
+- YouTube Demo Video: [Video Link](https://www.youtube.com/watch?v=clWYOYiWp7M&)
+- Drive Video Link : [Click the Link](https://drive.google.com/file/d/1ZTZRJiMbu8Z4JBtj6-yMDp8RPuiYWt4X/view?usp=sharing)
 
 ### Notes
 The system avoids real-time API calls during daytime to reduce API load
